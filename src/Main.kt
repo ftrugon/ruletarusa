@@ -1,19 +1,6 @@
 import kotlin.random.Random
 val jugadores = mapOf("jug1" to "jugador 1","jug2" to "jugador 2")
 
-/**
- * Hacer una ruleta rusa de 2 jugadores
- * TODO:
- * //- Mensajes de cosas
- * //- Hcaer la ruleta
- * //- Elegir cuantas balas hay en el cargador
- * //- Hcer que las balas se pongan en posiciones aleatorias
- * // - cara o cruz para ver quien empieza
- * //- Elegir si quiere dispararse o disparar a otro
- * //- Compribar si alguna bala se ha disparado
- * - En cada tiro un chuleta para calcular los chances
- */
-
 fun historiaIntro() {
     val listahistoria = listOf(
     "Te despiertas en una habitación oscura, con solo una silla y una mesa frente a ti.",
@@ -119,6 +106,9 @@ fun disparo(tambor:MutableList<Int>, i:Int): Boolean{
     }
 }
 
+/**
+ * Jugar es la principal
+ */
 fun jugar(tambor:MutableList<Int>){
     print("Cara o cruz jugador 1?: ")
     val empiezaprimero = caraocruz()
@@ -160,6 +150,10 @@ fun jugar(tambor:MutableList<Int>){
     }
 }
 
+/**
+ * Simplemente es una comprobacion de s o n
+ * @return si o no
+ */
 fun comprobarrespuesta():String{
     var estado2 = false
     var respuesta = readln()
@@ -173,9 +167,17 @@ fun comprobarrespuesta():String{
     }while (!estado2)
     return respuesta
 }
+/**
+ * ClS es simplemente para limpliar la pantalla, no es python, este simplemente hace un println 100 veces
+ */
 fun cls(){
     for (i in 1..40) println()
 }
+
+/**
+ * Main es la funcion donde se ejecuta todas las partes del codigo y cuando se acaba se pregunta si se quiere jugar de
+ * nuevo
+ */
 fun main() {
     var estado = false
     do {
@@ -194,4 +196,3 @@ fun main() {
     }while (!estado)
 
 }
-"holaa"
