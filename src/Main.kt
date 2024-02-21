@@ -152,3 +152,6 @@ fun main() {
     }while (!estado)
 
 }
+class Escopeta{
+
+}
