@@ -1,8 +1,17 @@
-class Escopeta(numbalas:Int,numbalascargadas: Int){
+class Escopeta(){
 
+    val cargador = Cargador()
 
-    fun disparo(tambor:MutableList<Int>, i:Int): Boolean{
-
+    fun disparo(): Boolean{
+        if (cargador.tambor[0] == Cartucho(true)){
+            println("BOOM")
+            cargador.tambor.remove(cargador.tambor[0])
+            return true
+        }else {
+            println("clic")
+            cargador.tambor.remove(cargador.tambor[0])
+            return false
+        }
     }
 
 
