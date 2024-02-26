@@ -1,0 +1,1 @@
+data class Jugador(val id:Int,val nombre:String, var vida:Int,val objetos:MutableList<Objeto>)

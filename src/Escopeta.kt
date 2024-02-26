@@ -1,4 +1,4 @@
-class Escopeta(){
+class Escopeta{
 
     val cargador = Cargador()
 

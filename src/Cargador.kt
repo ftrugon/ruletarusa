@@ -33,4 +33,7 @@ class Cargador{
         return listadecartucho
     }
 
+    fun shufflear(){
+        tambor.shuffle()
+    }
 }
