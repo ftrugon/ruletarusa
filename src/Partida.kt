@@ -32,7 +32,7 @@ class Partida( val jugadores: List<Jugador>) {
         }while (estadopartida)
     }
 
-    fun usarobjeto(jug:Jugador){
+    private fun usarobjeto(jug:Jugador){
         println("¿Quieres usar algún objeto? Este es tu inventario:")
         jug.objetos.forEachIndexed { index, objeto ->
             println("${index + 1}. $objeto")
@@ -40,36 +40,39 @@ class Partida( val jugadores: List<Jugador>) {
         println("${jug.objetos.size + 1}. No")
 
         print("Selecciona el número correspondiente al objeto que quieres usar (o introduce ${jug.objetos.size + 1} para salir): ")
-        val respuesta = pedirrespuesta()
-        if (respuesta.toIntOrNull() != null) {
-
-            val opcion = respuesta.toInt()
-            if (opcion in 1..jug.objetos.size) {
-                val objetoElegido = jug.objetos[opcion - 1]
-                println("Has elegido usar: $objetoElegido")
-                    objetoElegido.accion(this,jug)
-            } else if (opcion == jug.objetos.size + 1) {
-                println("Has decidido no usar ningún objeto.")
+        var estado = false
+        do {
+            val respuesta = pedirrespuesta()
+            if (respuesta.toIntOrNull() != null) {
+                val opcion = respuesta.toInt()
+                if (opcion in 1..jug.objetos.size) {
+                    val objetoElegido = jug.objetos[opcion - 1]
+                    println("Has elegido usar: $objetoElegido")
+                    objetoElegido.accion(this, jug)
+                    estado = true
+                } else if (opcion == jug.objetos.size + 1) {
+                    println("No has usado nada")
+                    estado = true
+                } else {
+                    print("Opción no válida:")
+                }
             } else {
-                println("Opción no válida.")
+                print("Respuesta no válida:")
             }
-        } else {
-            println("Respuesta no válida.")
-        }
-
+        }while (!estado)
     }
 
-    fun pedirrespuesta(): String {
+    private fun pedirrespuesta(): String {
         return readln().trim().uppercase()
     }
 
 
 
-    fun dispararme(jug:Jugador,danio:Int){
+    private fun dispararme(jug:Jugador, danio:Int){
         if (escopeta.disparo()) jug.vida -= danio
     }
 
-    fun dispararle(jug:Jugador,danio:Int){
+    private fun dispararle(jug:Jugador, danio:Int){
         if (escopeta.disparo()){
             if (jug == jugadores[0]){
                 jugadores[1].vida -= danio
@@ -79,19 +82,19 @@ class Partida( val jugadores: List<Jugador>) {
         }
     }
 
-    fun elegirjugador(numrond:Int):Jugador{
+    private fun elegirjugador(numrond:Int):Jugador{
         return if (numrond % 2 != 0) {
             jugadores[0]
         }else jugadores[1]
     }
 
-    fun opciones(jugador:Jugador){
+    private fun opciones(jugador:Jugador){
         println("Que quieres hacer?")
         println("1. Dispararte?")
         println("2. Disparar al oponente?")
     }
 
-    fun elegiropcion(): Int {
+    private fun elegiropcion(): Int {
         do {
             print("Que quieres hacer?: ")
             val opcion = try {
@@ -107,7 +110,7 @@ class Partida( val jugadores: List<Jugador>) {
         }while (true)
     }
 
-    fun alguienmuere():Boolean{
+    private fun alguienmuere():Boolean{
         for (jugador in jugadores){
             if (jugador.vida == 0) return true
         }

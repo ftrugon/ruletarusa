@@ -4,14 +4,14 @@ class Cargador{
 
     val tambor = cargartambor(elegirnumbalas())
 
-    fun elegirnumbalas():Int{
+    private fun elegirnumbalas():Int{
         val numbalas = Random.nextInt(2,9)
         println("Hay $numbalas cartuchos en el cargador")
         return numbalas
     }
 
 
-    fun cargartambor(numebala: Int) : MutableList<Cartucho>{
+    private fun cargartambor(numebala: Int) : MutableList<Cartucho>{
 
         val listadecartucho = mutableListOf<Cartucho>()
         for (i in 1..numebala){

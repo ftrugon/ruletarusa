@@ -24,7 +24,6 @@ fun main() {
         jugador2
     )
 
-
     val partida = Partida(listajug)
     partida.iniciarpartida()
 }
