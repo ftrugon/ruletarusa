@@ -1,39 +1,56 @@
 import kotlin.random.Random
 
-class Cargador{
+/**
+ * Clase que representa un cargador de cartuchos.
+ */
+class Cargador {
 
-    val tambor = cargartambor(elegirnumbalas())
+    // Tambor de cartuchos cargados
+    val tambor = cargarTambor(elegirNumBalas())
 
-    private fun elegirnumbalas():Int{
-        val numbalas = Random.nextInt(2,9)
-        println("Hay $numbalas cartuchos en el cargador")
-        return numbalas
+    /**
+     * Método privado para elegir el número de balas en el cargador.
+     * @return El número de balas seleccionado aleatoriamente.
+     */
+    private fun elegirNumBalas(): Int {
+        val numBalas = Random.nextInt(2, 9)
+        println("Hay $numBalas cartuchos en el cargador")
+        return numBalas
     }
 
-
-    private fun cargartambor(numebala: Int) : MutableList<Cartucho>{
-
-        val listadecartucho = mutableListOf<Cartucho>()
-        for (i in 1..numebala){
-            listadecartucho.add(Cartucho(Random.nextBoolean()))
+    /**
+     * Método privado para cargar el tambor con los cartuchos.
+     * @param numBalas El número de balas a cargar en el tambor.
+     * @return Una lista mutable de cartuchos cargados.
+     */
+    private fun cargarTambor(numBalas: Int): MutableList<Cartucho> {
+        val listaDeCartuchos = mutableListOf<Cartucho>()
+        // Cargar los cartuchos en el tambor
+        for (i in 1..numBalas) {
+            listaDeCartuchos.add(Cartucho(Random.nextBoolean()))
         }
-        var contarcargadas = listadecartucho.count { it.cargado == true}
+        var contarCargadas = listaDeCartuchos.count { it.cargado }
 
-        if (contarcargadas == 0) {
-            contarcargadas++
-            listadecartucho[0] = Cartucho(true)
-        }else if(contarcargadas == numebala){
-            contarcargadas--
-            listadecartucho[0] = Cartucho(false)
+        // Verificar si no hay cartuchos cargados o todos están cargados
+        if (contarCargadas == 0) {
+            contarCargadas++
+            listaDeCartuchos[0] = Cartucho(true)
+        } else if (contarCargadas == numBalas) {
+            contarCargadas--
+            listaDeCartuchos[0] = Cartucho(false)
         }
 
-        listadecartucho.shuffle()
+        // Mezclar la lista de cartuchos
+        listaDeCartuchos.shuffle()
 
-        println("$contarcargadas estan cargados")
-        return listadecartucho
+        println("$contarCargadas están cargados")
+        return listaDeCartuchos
     }
 
-    fun shufflear(){
+    /**
+     * Método para mezclar los cartuchos en el tambor.
+     */
+    fun shufflear() {
         tambor.shuffle()
     }
 }

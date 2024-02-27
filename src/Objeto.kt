@@ -1,11 +1,20 @@
-import kotlin.contracts.contract
-
-interface Objeto{
-    fun accion(partida: Partida,jugador: Jugador)
+/**
+ * Interfaz que define un objeto del juego.
+ */
+interface Objeto {
+    /**
+     * Método para realizar la acción asociada al objeto en la partida.
+     * @param partida La partida en curso.
+     * @param jugador El jugador que realiza la acción.
+     */
+    fun accion(partida: Partida, jugador: Jugador)
 }
 
-class Cigarro():Objeto{
-    override fun accion(partida: Partida,jugador: Jugador) {
+/**
+ * Clase que representa un objeto "Cigarro" en el juego.
+ */
+class Cigarro : Objeto {
+    override fun accion(partida: Partida, jugador: Jugador) {
         jugador.vida++
     }
 
@@ -14,11 +23,14 @@ class Cigarro():Objeto{
     }
 }
 
-class Lupa():Objeto{
+/**
+ * Clase que representa un objeto "Lupa" en el juego.
+ */
+class Lupa : Objeto {
     override fun accion(partida: Partida, jugador: Jugador) {
-        if (partida.escopeta.cargador.tambor[0] == Cartucho(true)){
-            println("Este cartucho esta cargado")
-        }else println("Este cartucho esta descargado")
+        if (partida.escopeta.cargador.tambor.isNotEmpty() && partida.escopeta.cargador.tambor[0].cargado) {
+            println("Este cartucho está cargado")
+        } else println("Este cartucho está descargado")
     }
 
     override fun toString(): String {
@@ -26,12 +38,15 @@ class Lupa():Objeto{
     }
 }
 
-class Refresco():Objeto{
+/**
+ * Clase que representa un objeto "Refresco" en el juego.
+ */
+class Refresco : Objeto {
     override fun accion(partida: Partida, jugador: Jugador) {
-        if (partida.escopeta.cargador.tambor[0] == Cartucho(true)){
+        if (partida.escopeta.cargador.tambor.isNotEmpty() && partida.escopeta.cargador.tambor[0].cargado) {
             println("Este cartucho estaba cargado")
-        }else println("Este cartucho estaba descargado")
-        partida.escopeta.cargador.tambor.remove(partida.escopeta.cargador.tambor[0])
+        } else println("Este cartucho estaba descargado")
+        partida.escopeta.cargador.tambor.removeAt(0)
     }
 
     override fun toString(): String {
@@ -39,7 +54,10 @@ class Refresco():Objeto{
     }
 }
 
-class Sierra():Objeto{
+/**
+ * Clase que representa un objeto "Sierra" en el juego.
+ */
+class Sierra : Objeto {
     override fun accion(partida: Partida, jugador: Jugador) {
         partida.danio = 2
     }
@@ -49,17 +67,23 @@ class Sierra():Objeto{
     }
 }
 
-class Esposas():Objeto{
+/**
+ * Clase que representa un objeto "Esposas" en el juego.
+ */
+class Esposas : Objeto {
     override fun accion(partida: Partida, jugador: Jugador) {
         partida.saltarTurno = true
     }
 
     override fun toString(): String {
-        return "Esposas -> Te saltaras el turno del otro jugador"
+        return "Esposas -> Te saltarás el turno del otro jugador"
     }
 }
 
-class Cuchara():Objeto{
+/**
+ * Clase que representa un objeto "Cuchara" en el juego.
+ */
+class Cuchara : Objeto {
     override fun accion(partida: Partida, jugador: Jugador) {
         partida.escopeta.cargador.shufflear()
     }

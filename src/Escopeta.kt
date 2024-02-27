@@ -1,18 +1,29 @@
-class Escopeta{
+/**
+ * Clase que representa una escopeta.
+ */
+class Escopeta {
 
+    // Cargador de la escopeta
     val cargador = Cargador()
 
-    fun disparo(): Boolean{
-        if (cargador.tambor[0] == Cartucho(true)){
+    /**
+     * Método para realizar un disparo con la escopeta.
+     * @return true si el disparo fue exitoso (cartucho cargado), false si no hay cartucho cargado.
+     */
+    fun disparo(): Boolean {
+        // Verificar si hay un cartucho cargado en el tambor
+        if (cargador.tambor.isNotEmpty() && cargador.tambor[0].cargado) {
             println("BOOM")
-            cargador.tambor.remove(cargador.tambor[0])
+            // Eliminar el cartucho disparado del cargador
+            cargador.tambor.removeAt(0)
             return true
-        }else {
+        } else {
             println("clic")
-            cargador.tambor.remove(cargador.tambor[0])
+            // Eliminar el cartucho del cargador, aunque no haya disparo
+            if (cargador.tambor.isNotEmpty()) {
+                cargador.tambor.removeAt(0)
+            }
             return false
         }
     }
-
-
 }
