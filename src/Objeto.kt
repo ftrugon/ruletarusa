@@ -51,7 +51,7 @@ class Sierra():Objeto{
 
 class Esposas():Objeto{
     override fun accion(partida: Partida, jugador: Jugador) {
-        partida.cont ++
+        partida.saltarTurno = true
     }
 
     override fun toString(): String {

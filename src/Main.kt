@@ -1,5 +1,12 @@
 import kotlin.random.Random
 
+fun crearlistaaleatoria(numitems:Int,todosobjetos:List<Objeto>): MutableList<Objeto> {
+    val listaadevolver = mutableListOf<Objeto>()
+    for (i in 1..numitems){
+        listaadevolver.add(todosobjetos.random())
+    }
+    return listaadevolver
+}
 
 fun main() {
 
@@ -29,10 +36,3 @@ fun main() {
 }
 
 
-fun crearlistaaleatoria(numitems:Int,todosobjetos:List<Objeto>): MutableList<Objeto> {
-    val listaadevolver = mutableListOf<Objeto>()
-    for (i in 1..numitems){
-        listaadevolver.add(todosobjetos.random())
-    }
-    return listaadevolver
-}
