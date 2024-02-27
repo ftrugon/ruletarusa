@@ -23,8 +23,9 @@ class Partida(private val jugadores: List<Jugador>) {
             // Elegir el jugador activo para esta ronda
             val jugador = elegirJugador(cont)
 
-            // Reiniciar el daño para esta ronda
+            // Reiniciar el daño para esta ronda y reinicia saltarturno por si se han usado las esposas
             danio = 1
+
 
             // Imprimir información sobre la ronda y los jugadores
             println("----------------------------------------------------------------------------")
@@ -50,6 +51,9 @@ class Partida(private val jugadores: List<Jugador>) {
                     cont++
                     val jugador2 = elegirJugador(cont)
                     println("Se ha saltado el turno de ${jugador2.nombre}")
+
+                    // Vuelve saltarturno al estodo original para que no se vuelva a saltar el turno del oponente
+                    saltarTurno = false
                 }
                 cont++
             }
