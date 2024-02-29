@@ -28,7 +28,7 @@ class Cigarro : Objeto {
  */
 class Lupa : Objeto {
     override fun accion(partida: Partida, jugador: Jugador) {
-        if (partida.escopeta.cargador.tambor.isNotEmpty() && partida.escopeta.cargador.tambor[0].cargado) {
+        if (partida.escopeta.tambor.isNotEmpty() && partida.escopeta.tambor[0].cargado) {
             println("Este cartucho está cargado")
         } else println("Este cartucho está descargado")
     }
@@ -43,10 +43,10 @@ class Lupa : Objeto {
  */
 class Refresco : Objeto {
     override fun accion(partida: Partida, jugador: Jugador) {
-        if (partida.escopeta.cargador.tambor.isNotEmpty() && partida.escopeta.cargador.tambor[0].cargado) {
+        if (partida.escopeta.tambor.isNotEmpty() && partida.escopeta.tambor[0].cargado) {
             println("Este cartucho estaba cargado")
         } else println("Este cartucho estaba descargado")
-        partida.escopeta.cargador.tambor.removeAt(0)
+        partida.escopeta.tambor.removeAt(0)
     }
 
     override fun toString(): String {
@@ -85,7 +85,7 @@ class Esposas : Objeto {
  */
 class Cuchara : Objeto {
     override fun accion(partida: Partida, jugador: Jugador) {
-        partida.escopeta.cargador.shufflear()
+        partida.escopeta.shufflear()
     }
 
     override fun toString(): String {

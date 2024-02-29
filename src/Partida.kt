@@ -61,7 +61,7 @@ class Partida(private val jugadores: List<Jugador>) {
             // Verificar si alguien ha muerto durante esta ronda
             if (alguienMuere()) estadoPartida = false
             // Si el cargador está vacío, reiniciar la escopeta
-            if (escopeta.cargador.tambor.count { it.cargado } == 0) escopeta = Escopeta()
+            if (escopeta.tambor.count { it.cargado } == 0) escopeta = Escopeta()
         } while (estadoPartida)
     }
 
